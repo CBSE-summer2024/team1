@@ -4,8 +4,4 @@ import "./index.css";
 
 import App from "./App.vue";
 
-export default function(elm){
-    
-    createApp(App).mount(elm);
-}
-
+createApp(App).mount("#app");

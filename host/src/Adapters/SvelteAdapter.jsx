@@ -1,19 +1,21 @@
 import React, { useEffect, useRef } from 'react';
+
 const SvelteAdapter = ({ Component, props }) => {
     const containerRef = useRef(null);
-    let svelteInstance;
+    let svelteInstance = useRef(null);
 
     useEffect(() => {
-        svelteInstance = Component  
-        const app = new Component({
+        svelteInstance.current = new Component({
             target: containerRef.current,
+            props,
         });
+
         return () => {
-            if (app) {
-                app.$destroy();
+            if (svelteInstance.current) {
+                svelteInstance.current.$destroy();
             }
         };
-    }, [Component, props]);
+    }, [Component]);
 
     return <div ref={containerRef}></div>;
 };
