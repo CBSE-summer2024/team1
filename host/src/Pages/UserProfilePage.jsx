@@ -1,17 +1,18 @@
-import Remote from "UserManagementTeam/App"
-import React from 'react'
-import ComponentAdapter from "../Adapters/ComponentAdapter";
-
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ComponentAdapter from '../Adapters/ComponentAdapter';
+import { useAuth } from '../context/AuthContext';
+import ProfileComponent from "UserManagementTeam/App"
 export default function UserProfilePage() {
-    const vueComponentProps = {
-        CONTAINER: 'container-class',
-        NAME: 'MyApp',
-        FRAMEWORK: 'Vue.js',
-        LANGUAGE: 'TypeScript',
-        CSS: 'CSS',
-    };
-    
+    const session = useAuth();
+    const navigate = useNavigate();
+    if (!session) {
+        navigate('/auth');
+    }
+
     return (
-        <ComponentAdapter framework={'vue'} Component={Remote} props={vueComponentProps}/>
-    )
+        session && (
+            <ComponentAdapter framework={'vue'} Component={ProfileComponent} props={session.user} />
+        )
+    );
 }
