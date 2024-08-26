@@ -2,6 +2,7 @@ export interface User {
   id: string;
   aud: string;
   role: string;
+  name: string;  
   email: string;
   email_confirmed_at: string;
   phone: string | null;
@@ -15,6 +16,7 @@ export interface User {
   updated_at: string;
   is_anonymous: boolean;
 }
+
 
 interface AppMetadata {
   provider: string;
