@@ -5,7 +5,7 @@ interface Product {
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  image_url: string;
 }
 
 interface ProductProps {
@@ -14,23 +14,21 @@ interface ProductProps {
 
 const ProductDetails: React.FC<ProductProps> = ({ product }) => {
   return (
-    <div className="container mx-auto p-4">
-      <div className="card shadow-lg w-full max-w-3xl h-auto mx-auto">
-        <figure>
-          <img 
-            src={product.imageUrl} 
-            alt="Product" 
-            className="w-full h-[32rem] object-cover" 
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title text-black">{product.name}</h2> 
-          <p className="text-sm text-black">{product.description}</p> 
-          <div className="card-actions flex justify-end items-center space-x-4"> 
-          <span className="text-lg font-semibold text-black">${product.price.toFixed(2)}</span>
-            <button className="btn btn-primary">Add to Cart</button>
-            
-            <button className="btn btn-secondary">Buy Now</button>
+    <div className="min-h-screen">
+      <div className="container mx-auto p-5">
+        <div className="flex flex-col lg:flex-row items-center">
+          <div className="w-full lg:w-1/2">
+            <img src={product.image_url} alt={product.name} className="rounded-lg shadow-2xl" />
+          </div>
+          <div className="w-full lg:w-1/2 lg:pl-10 mt-5 lg:mt-0">
+            <h1 className="text-3xl font-bold">{product.name}</h1>
+            <p className="mt-4 text-lg">{product.description}</p>
+            <div className="mt-4">
+              <span className="text-2xl font-semibold">${product.price}</span>
+            </div>
+            <div className="mt-6">
+              <button className="btn btn-primary">Add to Cart</button>
+            </div>
           </div>
         </div>
       </div>
