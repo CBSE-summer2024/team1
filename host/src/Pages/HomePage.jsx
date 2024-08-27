@@ -1,26 +1,83 @@
-
-import React,{useEffect}from 'react'
-import SvelteApp from "DiscoveryTeam/App"
+import React, { useEffect, useState } from "react";
+import SvelteApp from "DiscoveryTeam/App";
 import { supabase } from "../dbConfig";
-import ComponentAdapter from '../Adapters/ComponentAdapter';
+import ComponentAdapter from "../Adapters/ComponentAdapter";
 
 export default function HomePage() {
+  const [loadMoreIncrement, setLoadMoreIncrement] = React.useState(0);
+  const [products, setProducts] = useState([]);
+  const [pageRange, setPageRange] = useState({ start: 0, end: 0 });
+  const [isEnd, setIsEnd] = useState(false);
 
-    useEffect(()=>{
-    
-        supabase.from("products").select().then((val)=>{
-            console.log(val)
-        })
-    
-    },[])
+  useEffect(() => {
+    setItemsToShowAndLoadMore();
 
-    const svelteProps = {
-        name: 'MyApp',
-        framework: 'Svelte',
+    window.addEventListener("resize", setItemsToShowAndLoadMore);
+    return () => {
+      window.removeEventListener("resize", setItemsToShowAndLoadMore);
     };
+  }, []);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      await getProducts();
+    };
+    fetchProducts();
+  }, [pageRange]);
 
-    return (
-        <ComponentAdapter framework="svelte" Component={SvelteApp}  props={svelteProps}/>
-    )
+  const getProducts = async () => {
+    const { data, error } = await supabase
+      .from("products")
+      .select()
+      .range(pageRange.start, pageRange.end - 1);
+
+    if (error) {
+      console.error("Error fetching products:", error);
+      setLoading(false);
+      return;
+    }
+
+    setProducts((prevProducts) => [...prevProducts, ...data]);
+  };
+
+  const setItemsToShowAndLoadMore = () => {
+    const width = window.innerWidth;
+    if (width >= 1024) {
+      // lg
+      setPageRange({ start: 0, end: 10 });
+      setLoadMoreIncrement(11);
+    } else if (width >= 768) {
+      // md
+      setPageRange({ start: 0, end: 9 });
+      setLoadMoreIncrement(13);
+    } else {
+      // small
+      setPageRange({ start: 0, end: 4 });
+      setLoadMoreIncrement(4);
+    }
+  };
+
+  function loadMore() {
+    setPageRange({
+      start: pageRange.end + 1,
+      end: pageRange.end + loadMoreIncrement,
+    });
+    if (pageRange.end > products.length) {
+      setIsEnd(true);
+    }
+  }
+  return (
+    <>
+      {products.length > 0 ? (
+        <ComponentAdapter
+          framework="svelte"
+          Component={SvelteApp}
+          props={{ products: products }}
+        />
+      ) : (
+        <p>No Products Found</p>
+      )}
+      {isEnd ? null : <button onClick={loadMore}>Load More</button>}
+    </>
+  );
 }
