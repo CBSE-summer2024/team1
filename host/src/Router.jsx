@@ -4,13 +4,16 @@ import UserProfilePage from "./Pages/UserProfilePage"
 import React from 'react'
 import Layout from "./Layout"
 import DetailsPage from "./Pages/DetailsPage"
+import ProductsPage from "./Pages/ProductsPage"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
     <Route element={<Layout/>}>
         <Route index element={<HomePage />} />
         <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/products" element={<ProductsPage/>}/>
         <Route path="/products/:id" element={<DetailsPage/>}/>
+        
     </Route>
     
 ))
