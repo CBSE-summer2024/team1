@@ -11,7 +11,7 @@ export default function AuthPage() {
 
     useEffect(() => {
         if (session) {
-            navigate('/profile');
+            navigate('/');
         }
     }, [session, navigate]);
 
