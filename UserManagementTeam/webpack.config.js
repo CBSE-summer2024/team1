@@ -70,7 +70,8 @@ module.exports = (_, argv) => ({
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
-        "./App":'./src/App.vue'
+
+        "./App":'./src/Profile.vue'
       },
       shared: require("./package.json").dependencies,
     }),
