@@ -1,6 +1,7 @@
 <script>
   export let products;
   import ProductList from "./ProductList.svelte";
+  import Carousel from "./Carousel.svelte";
 </script>
 
-<ProductList {products} />
+<Carousel {products} />
