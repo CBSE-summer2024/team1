@@ -1,8 +1,10 @@
-import Remote from "UserManagementTeam/App"
-import React from 'react'
-import ComponentAdapter from "../Adapters/ComponentAdapter";
-
+import React, { useEffect } from 'react';
+import {Navigate} from 'react-router-dom';
+import ComponentAdapter from '../Adapters/ComponentAdapter';
+import { useAuth } from '../context/AuthContext';
+import ProfileComponent from "UserManagementTeam/App"
 export default function UserProfilePage() {
+    const session = useAuth();
     const vueComponentProps = {
         profile:{
         "id": "a847e653-1717-46c4-af11-2820ca730f2d",
@@ -47,10 +49,13 @@ export default function UserProfilePage() {
         "created_at": "2024-08-25T22:00:41.498535Z",
         "updated_at": "2024-08-25T22:00:52.388566Z",
         "is_anonymous": false
-    }
+      }
     };
     
     return (
-        <ComponentAdapter framework={'vue'} Component={Remote} props={vueComponentProps}/>
-    )
+        session ? (
+            <ComponentAdapter framework={'vue'} Component={ProfileComponent} props={session.user} />
+        ):
+        <Navigate to={'/auth'}/>
+    );
 }
