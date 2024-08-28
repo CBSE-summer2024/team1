@@ -1,16 +1,5 @@
 <script>
-  const categories = [
-    "Electronics",
-    "Fashion",
-    "Home & Garden",
-    "Sports",
-    "Toys",
-    "Electronics",
-    "Fashion",
-    "Home & Garden",
-    "Sports",
-    "Toys",
-  ];
+  export let categories;
 </script>
 
 <div class="p-4 bg-gray-100 rounded-lg shadow-md fixed-height overflow-y-auto">

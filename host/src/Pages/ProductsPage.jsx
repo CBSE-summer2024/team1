@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SvelteApp from "DiscoveryTeam/App";
+import ProductList from "DiscoveryTeam/ProductList";
 import { supabase } from "../dbConfig";
 import ComponentAdapter from "../Adapters/ComponentAdapter";
 
@@ -70,7 +70,7 @@ export default function ProductsPage() {
       {products.length > 0 ? (
         <ComponentAdapter
           framework="svelte"
-          Component={SvelteApp}
+          Component={ProductList}
           props={{ products: products }}
         />
       ) : (
