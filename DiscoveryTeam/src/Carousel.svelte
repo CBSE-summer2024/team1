@@ -1,21 +1,21 @@
 <script>
-  export let products;
+  export let images_urls;
 </script>
 
 <div>
   <div class="carousel w-full fixed-height">
-    {#each products as product, index}
+    {#each images_urls as image_url, index}
       <div id="slide{index + 1}" class="carousel-item relative w-full">
-        <img src={product.image_url} class="w-full" alt={product.name} />
+        <img src={image_url} class="w-full" alt="carousel" />
         <div
           class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
         >
           <a
-            href={`#slide${index === 0 ? products.length : index}`}
+            href={`#slide${index === 0 ? images_urls.length : index}`}
             class="btn btn-circle">❮</a
           >
           <a
-            href={`#slide${index + 2 > products.length ? 1 : index + 2}`}
+            href={`#slide${index + 2 > images_urls.length ? 1 : index + 2}`}
             class="btn btn-circle">❯</a
           >
         </div>

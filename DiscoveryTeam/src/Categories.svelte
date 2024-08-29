@@ -8,7 +8,9 @@
       <li
         class="p-2 bg-gray-200 mb-2 rounded flex items-center justify-center text-center"
       >
-        {category}
+        <a href="/categories/{category.id}">
+          {category.name}
+        </a>
       </li>
     {/each}
   </ul>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ProductList from "DiscoveryTeam/ProductList";
 import { supabase } from "../dbConfig";
 import ComponentAdapter from "../Adapters/ComponentAdapter";
 
 export default function ProductsPage() {
+  const { id } = useParams();
   const [loadMoreIncrement, setLoadMoreIncrement] = React.useState(0);
   const [products, setProducts] = useState([]);
   const [pageRange, setPageRange] = useState({ start: 0, end: 0 });
@@ -26,17 +28,32 @@ export default function ProductsPage() {
   }, [pageRange]);
 
   const getProducts = async () => {
-    const { data, error } = await supabase
-      .from("products")
-      .select()
-      .range(pageRange.start, pageRange.end - 1);
+    if (id !== undefined) {
+      const { data, error } = await supabase
+        .from("products")
+        .select()
+        .eq("category_id", id)
+        .range(pageRange.start, pageRange.end - 1);
 
-    if (error) {
-      console.error("Error fetching products:", error);
-      setLoading(false);
-      return;
+      if (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+        return;
+      }
+      setProducts((prevProducts) => [...prevProducts, ...data]);
+    } else {
+      const { data, error } = await supabase
+        .from("products")
+        .select()
+        .range(pageRange.start, pageRange.end - 1);
+
+      if (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+        return;
+      }
+      setProducts((prevProducts) => [...prevProducts, ...data]);
     }
-    setProducts((prevProducts) => [...prevProducts, ...data]);
   };
 
   const setItemsToShowAndLoadMore = () => {
