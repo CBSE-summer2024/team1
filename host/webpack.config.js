@@ -14,6 +14,9 @@ module.exports = (_, argv) => ({
 
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    alias: {
+      Shared: path.resolve(__dirname, '../FetchData')
+    }
   },
 
   devServer: {
@@ -80,6 +83,7 @@ module.exports = (_, argv) => ({
           singleton: true,
           requiredVersion: deps["react-dom"],
         },
+        
       },
     }),
     new HtmlWebPackPlugin({

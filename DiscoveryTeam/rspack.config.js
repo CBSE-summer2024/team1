@@ -41,6 +41,7 @@ module.exports = {
   resolve: {
     alias: {
       svelte: path.dirname(require.resolve('svelte/package.json')),
+      shared : path.resolve(__dirname, '../FetchData')
     },
     extensions: ['.mjs', '.js', '.ts', '.svelte'],
     mainFields: ['svelte', 'browser', 'module', 'main'],
@@ -92,7 +93,7 @@ module.exports = {
       name: 'DiscoveryTeam',
       filename: 'remoteEntry.js',
       exposes: {
-        "./App":"./src/App.svelte"
+        "./ProductsList":"./src/ProductList.svelte"
       },
       shared: {
       },

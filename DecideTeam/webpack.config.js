@@ -14,6 +14,9 @@ module.exports = (_, argv) => ({
 
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    alias: {
+      Shared: path.resolve(__dirname, '../FetchData')
+    }
   },
 
   devServer: {
