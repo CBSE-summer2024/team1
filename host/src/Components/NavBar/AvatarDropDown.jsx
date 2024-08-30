@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LogoutButton from '../LogoutButton'
 
 
 export default function AvatarDropDown() {
-  //todo :: function for logout when merge it
   return (
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -23,8 +23,7 @@ export default function AvatarDropDown() {
           </Link>
         </li>
         <li>
-          
-          <button>Logout</button>
+          <LogoutButton/>
         </li>
       </ul>
     </div>
