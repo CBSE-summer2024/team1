@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 interface Product {
   id: number;
@@ -13,6 +13,14 @@ interface ProductProps {
 }
 
 const ProductDetails: React.FC<ProductProps> = ({ product }) => {
+  const [selectedSize, setSelectedSize] = useState<number | null>(null);
+
+  const handleSizeClick = (size: number) => {
+    setSelectedSize(size);
+  };
+
+  const sizes = [40, 41, 42, 43, 44, 45, 46, 47];
+
   return (
     <div className="min-h-screen">
       <div className="container mx-auto p-5">
@@ -26,8 +34,23 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
             <div className="mt-4">
               <span className="text-2xl font-semibold">${product.price}</span>
             </div>
-            <div className="mt-6">
+            <h3 className="mt-6 text-lg font-bold">Size :</h3>
+            <div className="mt-2 flex flex-wrap gap-4">
+              {sizes.map((size) => (
+                <button
+                  key={size}
+                  className={`px-4 py-2 rounded ${
+                    selectedSize === size ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'
+                  }`}
+                  onClick={() => handleSizeClick(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+            <div className="mt-6 space-x-8">
               <button className="btn btn-primary">Add to Cart</button>
+              <button className="btn btn-secondary">Add to WishList</button>
             </div>
           </div>
         </div>
