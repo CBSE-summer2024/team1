@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import SvelteApp from "DiscoveryTeam/ProductsList";
+import { useParams } from "react-router-dom";
+import ProductList from "DiscoveryTeam/ProductList";
 import ComponentAdapter from "../Adapters/ComponentAdapter";
 import {  useLocation, useSearchParams } from "react-router-dom";
 
 export default function ProductsPage() {
+
     // todo :: uncomment code when merge categories
     // const { state } = useLocation();
     // const componentProps = {
@@ -12,7 +14,7 @@ export default function ProductsPage() {
     return (
         <ComponentAdapter
             framework="svelte"
-            Component={SvelteApp}
+            Component={ProductList}
             // props={{props:componentProps}}
         />
     );

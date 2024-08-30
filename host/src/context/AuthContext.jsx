@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={session}>
+        <AuthContext.Provider value={{ session, user: session?.user}}>
             {children}
         </AuthContext.Provider>
     );

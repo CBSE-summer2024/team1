@@ -9,6 +9,6 @@ export default function LogoutButton() {
         navigate('/')
     }
     return (
-        <button className="btn btn-primary" onClick={signOut}>Logout</button>
+        <button onClick={signOut}>Logout</button>
     )
 }

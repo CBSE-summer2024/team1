@@ -1,12 +1,12 @@
-const rspack = require('@rspack/core')
-const refreshPlugin = require('@rspack/plugin-react-refresh')
-const isDev = process.env.NODE_ENV === 'development'
-const path = require('path')
-const sveltePreprocess = require('svelte-preprocess')
+const rspack = require("@rspack/core");
+const refreshPlugin = require("@rspack/plugin-react-refresh");
+const isDev = process.env.NODE_ENV === "development";
+const path = require("path");
+const sveltePreprocess = require("svelte-preprocess");
 
-const prod = process.env.NODE_ENV === 'production'
+const prod = process.env.NODE_ENV === "production";
 
-const printCompilationMessage = require('./compilation.config.js');
+const printCompilationMessage = require("./compilation.config.js");
 
 /**
  * @type {import('@rspack/cli').Configuration}
@@ -14,49 +14,49 @@ const printCompilationMessage = require('./compilation.config.js');
 module.exports = {
   context: __dirname,
   entry: {
-    main: './src/index.ts',
+    main: "./src/index.ts",
   },
-  
+
   devServer: {
     port: 8082,
     historyApiFallback: true,
-    watchFiles: [path.resolve(__dirname, 'src')],
+    watchFiles: [path.resolve(__dirname, "src")],
     onListening: function (devServer) {
-      const port = devServer.server.address().port
+      const port = devServer.server.address().port;
 
-      printCompilationMessage('compiling', port)
+      printCompilationMessage("compiling", port);
 
-      devServer.compiler.hooks.done.tap('OutputMessagePlugin', (stats) => {
+      devServer.compiler.hooks.done.tap("OutputMessagePlugin", (stats) => {
         setImmediate(() => {
           if (stats.hasErrors()) {
-            printCompilationMessage('failure', port)
+            printCompilationMessage("failure", port);
           } else {
-            printCompilationMessage('success', port)
+            printCompilationMessage("success", port);
           }
-        })
-      })
-    }
+        });
+      });
+    },
   },
 
   resolve: {
     alias: {
-      svelte: path.dirname(require.resolve('svelte/package.json')),
       shared : path.resolve(__dirname, '../FetchData')
+      svelte: path.dirname(require.resolve("svelte/package.json")),
     },
-    extensions: ['.mjs', '.js', '.ts', '.svelte'],
-    mainFields: ['svelte', 'browser', 'module', 'main'],
+    extensions: [".mjs", ".js", ".ts", ".svelte"],
+    mainFields: ["svelte", "browser", "module", "main"],
   },
   module: {
     rules: [
       {
         test: /\.svg$/,
-        type: 'asset',
+        type: "asset",
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
               postcssOptions: {
                 plugins: {
@@ -67,13 +67,13 @@ module.exports = {
             },
           },
         ],
-        type: 'css',
+        type: "css",
       },
       {
         test: /\.svelte$/,
         use: [
           {
-            loader: 'svelte-loader',
+            loader: "svelte-loader",
             options: {
               compilerOptions: {
                 dev: !prod,
@@ -90,21 +90,21 @@ module.exports = {
   },
   plugins: [
     new rspack.container.ModuleFederationPlugin({
-      name: 'DiscoveryTeam',
-      filename: 'remoteEntry.js',
+      name: "DiscoveryTeam",
+      filename: "remoteEntry.js",
       exposes: {
-        "./ProductsList":"./src/ProductList.svelte"
+        "./ProductsList":"./src/ProductList.svelte",
+        "./Header": "./src/Header",
       },
-      shared: {
-      },
+      shared: {},
     }),
     new rspack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
     new rspack.ProgressPlugin({}),
     new rspack.HtmlRspackPlugin({
-      template: './src/index.html',
+      template: "./src/index.html",
     }),
     isDev ? new refreshPlugin() : null,
   ].filter(Boolean),
-}
+};
