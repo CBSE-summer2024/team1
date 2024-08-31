@@ -9,7 +9,6 @@ export const getProducts = async (pageRange:{start:number,end:number}, category=
 
     if (category) {
         query = query.eq("category_id",parseInt(category));
-        console.log(category)
     }
 
     const { data, error } = await query;
@@ -36,3 +35,13 @@ export const fetchProductById = async (id:number) => {
 
     return { data };
 };
+
+export const getCategories = async () =>{
+
+    const { data, error } = await supabase.from("categories").select();
+    if(error){
+        console.error("error when fetch categories",error);
+        return {error};
+    }
+    return {data};
+}
