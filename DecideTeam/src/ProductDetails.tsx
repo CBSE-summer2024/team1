@@ -1,8 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import {fetchProductById} from "Shared/dist/index"
-import React, {useState} from 'react';
-
 interface Product {
   id: number;
   name: string;

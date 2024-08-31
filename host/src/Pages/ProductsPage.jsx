@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductList from "DiscoveryTeam/ProductList";
+import ProductsList from "DiscoveryTeam/ProductsList";
 import ComponentAdapter from "../Adapters/ComponentAdapter";
 import {  useLocation, useSearchParams } from "react-router-dom";
 
@@ -14,7 +14,7 @@ export default function ProductsPage() {
     return (
         <ComponentAdapter
             framework="svelte"
-            Component={ProductList}
+            Component={ProductsList}
             // props={{props:componentProps}}
         />
     );

@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import Header from "DiscoveryTeam/Header";
 import ComponentAdapter from "../Adapters/ComponentAdapter";
-import { supabase } from "../dbConfig";
+import { supabase } from 'Shared/src/dbConfig';
 
 const images_urls = [
   "https://fastly.picsum.photos/id/11/2500/1667.jpg?hmac=xxjFJtAPgshYkysU_aqx2sZir-kIOjNR9vx0te7GycQ",
