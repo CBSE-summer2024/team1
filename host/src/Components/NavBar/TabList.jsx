@@ -6,7 +6,7 @@ export default function TabList({ routes }) {
         <ul className='tabs' role="tablist">
             {routes.map((route, index) => (
                 <li key={index} className='tab text-lg'>
-                    <Link to={route.path} state={{category:1}}>{route.label}</Link>
+                    <Link to={route.path}>{route.label}</Link>
                 </li>
             ))}
         </ul>

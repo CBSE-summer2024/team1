@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import DetailsComponent from 'DecideTeam/DetailsPage';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function DetailsPage() {
     const { id } = useParams();
+    const navigate = useNavigate();
     return (
-        <DetailsComponent productId={id} />
+        <DetailsComponent productId={id} navigationFunction ={navigate}/>
     );
 }

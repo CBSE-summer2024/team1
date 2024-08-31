@@ -19,7 +19,11 @@ export default function AvatarDropDown() {
         <li>
           <Link className="justify-between" to="profile">
             Profile
-            <span className="badge">New</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/order-history">
+            Order History
           </Link>
         </li>
         <li>

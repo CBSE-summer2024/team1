@@ -1,5 +1,5 @@
 import React from 'react'
-import { supabase } from "../dbConfig"
+import { supabase } from 'Shared/src/dbConfig';
 import { useNavigate } from 'react-router-dom'
 export default function LogoutButton() {
     const navigate = useNavigate();

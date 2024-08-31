@@ -1,8 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import {fetchProductById} from "Shared/dist/index"
-import React, {useState} from 'react';
-
 interface Product {
   id: number;
   name: string;
@@ -13,11 +11,12 @@ interface Product {
 
 interface ProductProps {
   productId: number;
+  navigationFunction:Function;
 }
 
 const sizes = [40, 41, 42, 43, 44, 45, 46, 47];
 
-const ProductDetails: React.FC<ProductProps> = ({ productId }) => {
+const ProductDetails: React.FC<ProductProps> = ({ productId,navigationFunction }) => {
 
   const [product,setProduct]=useState<Product>()
 
@@ -38,6 +37,15 @@ const ProductDetails: React.FC<ProductProps> = ({ productId }) => {
 
   return (
     <div className="min-h-screen">
+      
+      <div className="breadcrumbs text-sm">
+        <ul>
+          <li><button onClick={()=>{navigationFunction('/')}}>Home</button></li>
+          <li><button onClick={()=>{navigationFunction('/products')}}>products</button></li>
+          <li>product {product?.id}</li>
+        </ul>
+      </div>
+
       <div className="container mx-auto p-5">
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2">
@@ -75,7 +83,3 @@ const ProductDetails: React.FC<ProductProps> = ({ productId }) => {
 };
 
 export default ProductDetails;
-
-
-
-

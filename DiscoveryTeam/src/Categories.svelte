@@ -1,16 +1,27 @@
 <script>
-  export let categories;
+  import { writable } from "svelte/store";
+  import { onMount } from "svelte";
+  import {getCategories} from "shared"
+  
+  export let navigationFunction;
+  let categories = writable([]);
+  onMount(async()=>{
+    const {data,error} = await getCategories();
+    categories.set(data)
+  })
+  
+
 </script>
 
 <div class="p-4 bg-gray-100 rounded-lg shadow-md fixed-height overflow-y-auto">
   <ul class="list-none">
-    {#each categories as category}
+    {#each $categories as category}
       <li
         class="p-2 bg-gray-200 mb-2 rounded flex items-center justify-center text-center"
       >
-        <a href="/categories/{category.id}">
+        <button on:click={()=>navigationFunction('/products',{state:{category:category.id}})}>
           {category.name}
-        </a>
+        </button>
       </li>
     {/each}
   </ul>
