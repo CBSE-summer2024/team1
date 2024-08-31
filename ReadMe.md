@@ -23,13 +23,14 @@ Below is a diagram illustrating the micro frontend architecture. It shows how di
 
 ![Component](https://github.com/user-attachments/assets/7a7e7bb3-fd8f-41f4-93ff-22ec05a20bc8)
 
-### Shell Application With React
-The shell application acts as the orchestrator for the various micro frontends. It is responsible for loading components as needed and provides shared services such as routing and authentication.
 
 ## Routing Mechanism
 We adopt a **client-side routing mechanism** where routing is handled by the shell application using React Router. Each micro frontend registers its routes with the shell, which then dynamically loads the appropriate component based on the current URL.
   
-### Teams and Components
+## Teams and Components
+
+#### Shell Application With React
+The shell application acts as the orchestrator for the various micro frontends. It is responsible for loading components as needed and provides shared services such as routing and authentication.
 
 #### Inspire Team With Svelte
 - **Header**: Includes dynamic product categories and a carousel that highlights featured products.
