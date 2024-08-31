@@ -1,4 +1,4 @@
-## micro frontend mart.ps project
+# micro frontend mart.ps project
 
 ## Overview
 This project is a micro frontend-based e-commerce platform with different framework. The platform is divided among several teams, each responsible for different aspects of the application, all orchestrated through a central shell application.
@@ -29,29 +29,29 @@ We adopt a **client-side routing mechanism** where routing is handled by the she
   
 ## Teams and Components
 
-#### Shell Application With React
+### Shell Application With React
 The shell application acts as the orchestrator for the various micro frontends. It is responsible for loading components as needed and provides shared services such as routing and authentication.
 
-#### Inspire Team With Svelte
+### Inspire Team With Svelte
 - **Header**: Includes dynamic product categories and a carousel that highlights featured products.
 - **Products Listing**: Provides a comprehensive view of products that can be filtered based on selected categories or viewed as a list of all products with a simple pagination .
 - **Product Card**: Represents a product with a brief overview (used in the Product Listing feature).
 
-#### Decide Team
+### Decide Team
 - **Product Details**: Shows detailed information about a specific product, allowing users to view specifications, reviews, and pricing.
 - **Preferences Options**: Manages user preferences for adding items to the cart or wishlist.
   
-#### User Management Team With Vue
+### User Management Team With Vue
 - **User Profile**: View profile information.
 - **Orders History**: Tracks and displays a history of user orders, including status updates.
 
 ### Library for Data Fetching With TypeScript
 A custom library is used across components to handle all data fetching requirements. This library abstracts the backend interactions and provides a methods for retrieving data.
 
-## Backend System
+### Backend System
 We use Supabase as our backend solution, which offers a combination of database storage, real-time subscriptions, and built-in authentication mechanisms.
 
-## Authentication System
+### Authentication System
 The platform utilizes a robust authentication system integrated with Supabase .
 
 ## Possible Improvements
