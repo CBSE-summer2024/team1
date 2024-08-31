@@ -19,7 +19,6 @@ const router = createBrowserRouter(
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/:id" element={<DetailsPage />} />
       <Route path="/auth" element={<AuthPage />} />
-      <Route path="/categories/:id" element={<ProductsPage />} />
     </Route>
   )
 );
