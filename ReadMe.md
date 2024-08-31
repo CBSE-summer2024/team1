@@ -12,7 +12,7 @@ We adopt Module Federation as our integration tool, enabling **client-side compo
 below example for vertical split :
 ![1629803740608](https://github.com/user-attachments/assets/2d79252a-cb4e-4a63-87a1-7cebd85535f2)
 
-### Why Vertical Split 
+## Why Vertical Split 
 - **Domain-Focused Teams**: Each team specializes in a specific business domain or use case, such as inspire or the decide experience, fostering deep expertise and focused development efforts.
 - **Clear Boundaries**: This separation enhances modularity, making the codebase easier to manage and evolve over time.
 - **Scalability**: It allows the application to scale more effectively, as teams can work independently on their domains without interfering with each other.
