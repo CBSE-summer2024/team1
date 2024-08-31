@@ -5,7 +5,10 @@ import { useAuth } from '../context/AuthContext';
 import ProfileComponent from "UserManagementTeam/App";
 
 export default function UserProfilePage() {
-    const { user} = useAuth();
+    const { user,loading} = useAuth();
+    if(loading){
+        return <h1>loading</h1>
+    }
     return (
         user ? (
             <ComponentAdapter framework={'vue'} Component={ProfileComponent} props={{profile:user}} />
