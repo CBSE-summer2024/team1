@@ -13,6 +13,9 @@ module.exports = (_, argv) => ({
 
   resolve: {
     extensions: [".tsx", ".ts", ".vue", ".jsx", ".js", ".json"],
+    alias: {
+      shared: path.resolve(__dirname, '../FetchData')
+    }
   },
 
   devServer: {
@@ -71,7 +74,8 @@ module.exports = (_, argv) => ({
       remotes: {},
       exposes: {
 
-        "./App":'./src/Profile.vue'
+        "./App":'./src/Profile.vue',
+        './HistoryList':'./src/HistoryList.vue'
       },
       shared: require("./package.json").dependencies,
     }),

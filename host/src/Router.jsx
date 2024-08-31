@@ -11,6 +11,8 @@ import Layout from "./Layout";
 import DetailsPage from "./Pages/DetailsPage";
 import ProductsPage from "./Pages/ProductsPage";
 import AuthPage from "./Pages/AuthPage";
+import OrdersHistory from "./Pages/OrdersHistory";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<Layout />}>
@@ -19,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/:id" element={<DetailsPage />} />
       <Route path="/auth" element={<AuthPage />} />
+      <Route path="/order-history" element={<OrdersHistory/>} />
     </Route>
   )
 );
