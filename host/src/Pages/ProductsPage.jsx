@@ -16,7 +16,7 @@ export default function ProductsPage() {
             Component={ProductsList}
             props={{
                 props:{
-                    componentProps,
+                    ...componentProps,
                     navigationFunction :navigate,
                 }
                 
