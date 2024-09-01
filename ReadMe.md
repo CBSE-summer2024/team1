@@ -7,7 +7,7 @@ This project is a micro frontend-based e-commerce platform with different framew
 We adopted the **vertical split mechanism**, where each micro frontend is responsible for a specific business domain. This approach allows us to structure our teams around these domains, with each team focusing on a distinct segment of the application, in other words each team is responsible for one or a set of related urls.
 
 ## Integration Technique
-We adopt **Module Federation** as our integration tool, enabling **client-side composition** within the shell application. This tool helps to expose and share components across different applications in an easy manner. To accommodate the variety of frameworks used in our micro frontends, we build specific adapters in the ShellApp for each framework, ensuring smooth integration and communication across our ecosystem.
+We adopted **Module Federation** as our integration tool, enabling **client-side composition** within the shell application. This tool helps to expose and share components across different applications in an easy manner. To accommodate the variety of frameworks used in our micro frontends, we build specific adapters in the ShellApp for each framework, ensuring smooth integration and communication across our ecosystem.
 
 below example for vertical split :
 ![1629803740608](https://github.com/user-attachments/assets/2d79252a-cb4e-4a63-87a1-7cebd85535f2)
