@@ -4,7 +4,6 @@
   import { getProducts } from "shared";
   import ProductCard from "./ProductCard.svelte";
   export let props ;
-  console.log(props)
   let products = writable([]);
   let category = ''; 
   let pageRange = { start: 0, end: 9 };
@@ -41,7 +40,7 @@
   {#if $products.length > 0}
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
       {#each $products as product}
-        <ProductCard product={product} navigationFunction={props.navigationFunction}/>
+        <ProductCard product={product} />
       {/each}
     </div>
   {/if}

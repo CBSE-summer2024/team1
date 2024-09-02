@@ -6,7 +6,6 @@ import {  useLocation, useSearchParams } from "react-router-dom";
 
 export default function ProductsPage() {
     const { state } = useLocation();
-    const navigate = useNavigate();
     const componentProps = {
         ...(state?.category && { category: state.category })
     };
@@ -17,7 +16,6 @@ export default function ProductsPage() {
             props={{
                 props:{
                     ...componentProps,
-                    navigationFunction :navigate,
                 }
                 
             }}

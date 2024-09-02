@@ -6,8 +6,10 @@ import { useAuth } from '../context/AuthContext';
 
 
 export default function OrdersHistory() {
-  const {user} = useAuth();
-  console.log(user)
+  const {user,loading} = useAuth();
+  if(loading){
+    return <h1>loading</h1>
+  }
 
   return (
     <ComponentAdapter Component={HistoryList} framework='vue' props={{

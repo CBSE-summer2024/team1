@@ -1,6 +1,6 @@
 <script>
-  export let product; // Accepting product as a prop
-  export let navigationFunction;
+  import { ROUTES, EVENTS, buildUrl } from "shared";
+  export let product;
 </script>
 
 <div class="card bg-base-100 shadow-xl">
@@ -12,7 +12,14 @@
     <p>{product.description}</p>
     <p><strong>Price:</strong> ${product.price}</p>
     <div class="card-actions justify-end">
-      <button class="btn btn-primary w-full" on:click={()=>navigationFunction(`/products/${product.id}`)}>Details</button>
+      <button class="btn btn-primary w-full" on:click={() => {
+        const productUrl = buildUrl(ROUTES.PRODUCT_DETAILS, { id: product.id });
+        const event = new CustomEvent(EVENTS.ROUTING_EVENT, {
+          bubbles: true,
+          detail: { url: productUrl, id: product.id } 
+        }); 
+        window.dispatchEvent(event);
+      }}>Details</button>
     </div>
   </div>
 </div>
